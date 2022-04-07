@@ -14,8 +14,7 @@ const SiteItem:FC<IProps> = ({site}) => {
             <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4"
                href={`https://${site.host}`}><h2
                 className="text-2xl md:text-3xl">Хост сайта {site.host}</h2><p
-                className="mt-3 text-lg opacity-60">Consider that for a moment: everything we see around us is
-                assumed to have had a cause and is contingent upon.</p>
+                className="mt-3 text-lg opacity-60">Нажмите на меня чтобы перейти</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
                      className="mt-4">
                     <path className="stroke-current text-primary" strokeLinecap="round" strokeLinejoin="round"
