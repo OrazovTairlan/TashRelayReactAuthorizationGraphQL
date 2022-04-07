@@ -8,6 +8,10 @@ export type Scalars = {
     Float: number;
 };
 
+export type AuthError = {
+    error: String;
+}
+
 export type Logged = {
     __typename?: 'Logged';
     viewer: Viewer;

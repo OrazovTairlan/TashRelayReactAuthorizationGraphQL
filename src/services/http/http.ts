@@ -1,5 +1,5 @@
 import axios from "axios";
-import {isAuthError} from "../../utils/auth";
+import {isAuthError, isNotValidCredentials} from "../../utils/auth";
 import {CustomResponse} from "../../types/axios/axios";
 import history from "../../utils/history";
 import UserService from "../User/UserService";
@@ -21,6 +21,11 @@ $api.interceptors.request.use((config) => {
 $api.interceptors.response.use(async (config: CustomResponse) => {
     if (config.data.errors == undefined) { // if error property does not exist return response
         return config;
+    }
+    console.log(config, "error");
+    if (isNotValidCredentials(config)) {
+        throw Error("Неверный пароль или введена неверная почта");
+        return;
     }
     const originalRequest = config.config;
     if (isAuthError(config) && config.config && !config.config._isRetry) {

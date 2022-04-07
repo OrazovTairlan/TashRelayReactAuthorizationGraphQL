@@ -62,6 +62,7 @@
     "schema": "./schema.graphql",
     "language": "typescript"
   },
+  "homepage": ".",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -20,7 +20,7 @@ const RouterWrapper = () => {
     }
     return (
         <HistoryRouter history={history}>
-            <div className="p-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-screen">
+            <div className="p-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-screen p-0 min-h-screen">
                 <Routes>
                     <Route path={URLS.main}
                            element={rootStore.UserStore.hasToken ? <Navigate to={"/views"}/> : <LoginLayout/>}/>

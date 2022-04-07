@@ -6,10 +6,10 @@ import RelayEnvironment from "../RelayEnvironment";
 import {ViewerViewsQuery} from "../graphql/Sites/queries/__generated__/ViewerViewsQuery.graphql";
 import {Helmet} from "react-helmet";
 import Header from "../components/Header/Header";
-import Example from "../components/Modal/Modal";
 import UserService from "../services/User/UserService";
 import history from "../utils/history";
 import {RootStoreContext} from "../store/rootStore";
+import Modal from "../components/Modal/Modal";
 
 const preloadedQuery = loadQuery<ViewerViewsQuery>(RelayEnvironment, VIEWS, {
     /* query variables */
@@ -34,9 +34,9 @@ const SitesLayout = () => {
         setOpen(false)
     }
     return (
-        <div>
+        <div className="p-12 p-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-screen">
             <Header handleButton={handleButton}/>
-            <Example open={open}
+            <Modal open={open}
                      onConfirm={handleConfirm}
                      onClose={handleOnClose}
             />

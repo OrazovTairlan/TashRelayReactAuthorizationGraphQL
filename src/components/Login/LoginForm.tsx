@@ -10,6 +10,7 @@ import UserService from "../../services/User/UserService";
 import {useFormSchema} from "./hooks/useFormSchema";
 import {RootStoreContext} from "../../store/rootStore";
 import {history} from "../../utils/history";
+import {observer} from "mobx-react";
 
 const LoginForm: FC = () => {
     const {register, handleSubmit, formState: {errors}} = useFormSchema();
@@ -18,13 +19,18 @@ const LoginForm: FC = () => {
     const onSubmit = async (data: LoginInput) => {
         login({
             variables: {
-                email: "user@example.com", password: "user123#"
+                email: data.email, password: data.password
             },
             onCompleted: (data) => {
                 UserService.setTokens(data, () => {
                     rootStore.UserStore.changeStatusToken(true);
+                    rootStore.UserStore.changeAuthError("");
                     history.replace("/views");
                 });
+            },
+            onError: (e) => {
+                console.log(e.message, "error relay");
+                rootStore.UserStore.changeAuthError(e.message);
             }
         })
     }
@@ -60,6 +66,8 @@ const LoginForm: FC = () => {
                                 </svg>}
                                 Авторизация
                             </button>
+                            {rootStore.UserStore.authError.length > 0 ?
+                                <p className="text-red-400 m-2">{rootStore.UserStore.authError}</p> : null}
                         </div>
                     </form>
                 </div>
@@ -68,4 +76,4 @@ const LoginForm: FC = () => {
     );
 }
 
-export default LoginForm;
+export default observer(LoginForm);
